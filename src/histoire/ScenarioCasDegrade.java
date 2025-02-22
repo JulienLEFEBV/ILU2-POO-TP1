@@ -2,24 +2,30 @@ package histoire;
 
 import personnages.Gaulois;
 import villagegaulois.Etal;
+import villagegaulois.Village;
+import villagegaulois.VillageSansChefException;
 
 public class ScenarioCasDegrade {
 	public static void main(String[] args) {
 		Etal etal = new Etal();
 		etal.libererEtal();
-		System.out.println("Fin du test");
 		etal.acheterProduit(0, null);
-		System.out.println("Fin du test");
+		Gaulois gaulois=new Gaulois("Gaulois",10);
 		try {
-			etal.acheterProduit(-1, null);
+			etal.acheterProduit(-1, gaulois);
 		}catch(IllegalArgumentException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Fin du test");
-		Gaulois gaulois=new Gaulois("Gaulois",10);
 		try {
 			etal.acheterProduit(1, gaulois);
 		}catch(IllegalStateException e) {
+			e.printStackTrace();
+		}
+		Village village = new Village("le village des irréductibles", 10, 5);
+		try {
+			village.afficherVillageois();
+		}
+		catch(VillageSansChefException e){
 			e.printStackTrace();
 		}
 		System.out.println("Fin du test");
